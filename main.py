@@ -12,7 +12,7 @@ def main():
     #serve_allure_report()
 
 def generate_allure_report():
-    ## Full report generation
+    # Full report generation
     #os.system("allure generate ./reports/allure-results -o ./reports/allure-report --clean")
 
     # Simple report generation
@@ -37,8 +37,6 @@ if __name__ == "__main__":
 
     test_files = [
         "src/tests/test_login.py",
-        #"src/tests/test_login.py",
-        #"src/tests/test_login.py",
     ]
 
     main()
