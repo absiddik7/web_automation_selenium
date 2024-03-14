@@ -2,7 +2,7 @@
 
 import pytest
 import json
-from pages.login.login_page import LoginPage
+from src.pages.login.login_page import LoginPage
 from src.utils.driver_manager import DriverManager
 from src.utils.urls import URLs
 from config.config import default_username, default_password
