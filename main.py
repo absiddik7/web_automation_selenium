@@ -36,7 +36,7 @@ if __name__ == "__main__":
     update_headless_mode(headless)
 
     test_files = [
-        "src/tests/test_login.py",
+        "src/tests/login/test_login.py",
     ]
 
     main()
