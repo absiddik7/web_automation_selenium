@@ -27,7 +27,7 @@ if __name__ == "__main__":
     browser = "firefox"
 
     # Define headless mode - True or False
-    headless = False
+    headless = True
 
     # Update default browser setting
     update_default_browser(browser)

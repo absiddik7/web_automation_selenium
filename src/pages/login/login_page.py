@@ -10,9 +10,9 @@ class LoginPage:
 
     def __init__(self, driver_manager):
         self.driver = driver_manager.get_driver()
-        self.driver.get(URLs.LOGIN_URL)
+        self.driver.get(URLs.LOGIN_PAGE_URL)
 
-        # Define locators
+        # Page elements
         self.username_field = (By.ID, "Email")
         self.password_field = (By.ID, "Password")
         self.login_button = (By.CSS_SELECTOR, 'button[type="submit"]')
