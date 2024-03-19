@@ -1,0 +1,24 @@
+{
+    "products": {
+        "new_products": [
+            {
+                "name": "New Product 1",
+                "description": "New Product Description",
+                "category": "Computers",
+                "sku": "SKU123",
+                "price": "1000",
+                "image_path": "path/to/image.jpg"
+            }
+        ],
+        "existing_products": [
+            {
+                "name": "Apple MacBook Pro 13-inch",
+                "description": "Description",
+                "category": "Category",
+                "sku": "AP_MBP_13",
+                "price": "1800",
+                "image_path": "path/to/another_image.jpg"
+            }
+        ]
+    }
+}

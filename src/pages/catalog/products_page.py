@@ -11,13 +11,16 @@ class ProductsPage:
         # Page elements
         self.navigation_drawer_catalog_element = (By.XPATH, "//li[contains(@class, 'nav-item') and .//p[contains(., 'Catalog')]]")
         self.catelog_dropdown_products_element = (By.XPATH, "//a[@href='/Admin/Product/List']")
-        self.add_new_button = (By.XPATH, "//a[@class='btn btn-primary' and contains(text(), 'Add new')]")
+        self.add_new_button = (By.CSS_SELECTOR, 'a[href="/Admin/Product/Create"]')
+        self.product_info_form = (By.XPATH, "//div[@id='product-info']//button[@data-card-widget='collapse']")
+        self.product_price_form = (By.XPATH, "//div[@id='product-price']//button[@data-card-widget='collapse']")
         self.product_name_search_input = (By.CSS_SELECTOR, "input#SearchProductName")
-        self.category_select_element = (By.CSS_SELECTOR, "select#SearchCategoryId")
+        self.category_select_element = (By.ID, 'SelectedCategoryIds')
         self.search_button = (By.CSS_SELECTOR, "button#search-products")
         self.product_name_input = (By.CSS_SELECTOR, "input#Name")
         self.short_description_input = (By.CSS_SELECTOR, "textarea#ShortDescription")
-        self.category_select = (By.CSS_SELECTOR, "select#CategoryId")
+
+        self.category_select = (By.CSS_SELECTOR, "input[aria-describedby='SelectedCategoryIds_taglist']")
         self.category_options = (By.TAG_NAME, "option")
         self.sku_input = (By.XPATH, "//input[@id='Sku']")
         self.price_input = (By.XPATH, "//input[@class='k-formatted-value k-input']")
@@ -65,12 +68,22 @@ class ProductsPage:
     def click_add_new_button(self):
         self.driver.find_element(*self.add_new_button).click()
     
+    # Expand a collapse element
+    def expand_collapse_element(self, locator):
+        collapse_button = self.driver.find_element(*locator)
+        if "collapsed" in collapse_button.get_attribute("class"):
+            collapse_button.click()
+
     # add product details
     def add_product_details(self, product_name, short_description, category, sku, price):
+        self.expand_collapse_element(self.product_info_form)
+        self.expand_collapse_element(self.product_price_form)
         self.driver.find_element(*self.product_name_input).send_keys(product_name)
         self.driver.find_element(*self.short_description_input).send_keys(short_description)
-        Select(self.driver.find_element(*self.category_select)).select_by_visible_text(category)
         self.driver.find_element(*self.sku_input).send_keys(sku)
+        self.driver.find_element(*self.category_select).click()
+        Select(self.driver.find_element(*self.category_select)).select_by_visible_text(category)
+        
         self.driver.find_element(*self.price_input).send_keys(price)
 
     # add product image
@@ -91,7 +104,7 @@ class ProductsPage:
     def add_new_product(self, product_name, short_description, category, sku, price, image_path):
         self.click_add_new_button()
         self.add_product_details(product_name, short_description, category, sku, price)
-        self.add_product_image(image_path)
+        #self.add_product_image(image_path)
         self.save_and_continue_edit()
         self.save_product()
 

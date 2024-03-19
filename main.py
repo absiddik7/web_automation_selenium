@@ -24,10 +24,10 @@ def serve_allure_report():
 
 if __name__ == "__main__":
     # Choose browser from "chrome", "firefox", or "edge"
-    browser = "firefox"
+    browser = "chrome"
 
     # Define headless mode - True or False
-    headless = True
+    headless = False
 
     # Update default browser setting
     update_default_browser(browser)
@@ -36,7 +36,8 @@ if __name__ == "__main__":
     update_headless_mode(headless)
 
     test_files = [
-        "src/tests/login/test_login.py",
+        #"src/tests/login/test_login.py",
+        "src/tests/catalog/test_products.py"
     ]
 
     main()

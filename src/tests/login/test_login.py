@@ -1,5 +1,3 @@
-# test_login.py
-
 import pytest
 import json
 from src.pages.login.login_page import LoginPage
@@ -22,7 +20,7 @@ def test_valid_login(driver_manager, credentials):
     username = credentials['username']
     password = credentials['password']
     login_page = LoginPage(driver_manager)
-    login_page.login(username, "password")
+    login_page.login(username, password)
     assert login_page.is_dashboard_text_visible()
     assert login_page.is_dashboard_url()
 
